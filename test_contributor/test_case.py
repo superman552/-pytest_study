@@ -3,11 +3,11 @@ from python_code.contributor import Calculator
 
 
 class TestCalc:
-    def setup_class(self):
+    def setup(self):
         print("计算开始")
         self.cal = Calculator()
 
-    def teardown_class(self):
+    def teardown(self):
         print("计算结束")
 
     @pytest.mark.parametrize('a, b,res', [[5, 3, 2], [0.9, 0.8, 0.1], [-3, -4, 1]],
