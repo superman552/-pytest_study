@@ -1,3 +1,4 @@
+import shelve
 from time import sleep
 
 import pytest
@@ -16,8 +17,8 @@ class TestWeb():
         """
         self.driver = webdriver.Chrome()
 
-    def teardown_class(self):
-        self.driver.quit()
+        def teardown_class(self):
+            self.driver.quit()
 
     def test_01(self):
         """使用cookie实现扫码免登陆"""
@@ -61,7 +62,15 @@ class TestWeb():
           'path': '/', 'secure': False, 'value': '0'},
          {'domain': '.work.weixin.qq.com', 'expiry': 1606024090.261155, 'httpOnly': False, 'name': 'wwrtx.i18n_lan',
           'path': '/', 'secure': False, 'value': 'zh'}]
-        for cookie in cookies:
+        #将cookie持久化
+        cookies_shelve = shelve.open('shelve')
+        cookies_shelve['cookiesadd'] = cookies
+        cookies_shelve.close()
+        cookies_shelve = shelve.open('shelve')
+        cookies_she=cookies_shelve['cookiesadd']
+        cookies_shelve.close()
+
+        for cookie in cookies_she:
             self.driver.add_cookie(cookie)
         sleep(2)
         self.driver.refresh()
