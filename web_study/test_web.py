@@ -16,9 +16,10 @@ class TestWeb():
         self.driver = webdriver.Chrome(chrome_options=options)
         """
         self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
 
-        def teardown_class(self):
-            self.driver.quit()
+    def teardown_class(self):
+        self.driver.quit()
 
     def test_01(self):
         """使用cookie实现扫码免登陆"""
