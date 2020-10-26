@@ -10,16 +10,21 @@ class TestWeb():
     def setup_class(self):
         #浏览器复用：1.将Chrome的启动文件添加到环境变量，2.执行命令chrome --remote-debugging-port=9222
         #注意需要把其他谷歌浏览器关掉。
-        """
+        # """
         options = Options()
         options.debugger_address = '127.0.0.1:9222'
         self.driver = webdriver.Chrome(chrome_options=options)
-        """
-        self.driver = webdriver.Chrome()
-        self.driver.maximize_window()
+        # """
+        # self.driver = webdriver.Chrome()
+        # self.driver.maximize_window()
 
     def teardown_class(self):
         self.driver.quit()
+
+    def test_02(self):
+        """使用cookie实现扫码免登陆"""
+        self.driver.get("https://work.weixin.qq.com/wework_admin/frame")
+        sleep(3)
 
     def test_01(self):
         """使用cookie实现扫码免登陆"""
