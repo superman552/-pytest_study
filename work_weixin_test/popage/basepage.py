@@ -27,4 +27,4 @@ class BasePage:
         sleep(3)
     # def find_element_clickable(self,):
     #     pass
-
+        self.driver.f
