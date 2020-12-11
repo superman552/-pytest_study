@@ -31,6 +31,7 @@ class Log():
         th_all.setFormatter(format_str)#设置文件日志写入格式
         th_err = handlers.TimedRotatingFileHandler(filename=filenameerr, when=when, backupCount=backCount, encoding='utf-8')
         th_err.setLevel(logging.ERROR)
+        th_err.setFormatter(format_str)
         self.logger.addHandler(sh) #把对象加到logger里
         self.logger.addHandler(th_all)
         self.logger.addHandler(th_err)
